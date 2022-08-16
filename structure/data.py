@@ -12,9 +12,4 @@ class featureData:
     def setName(self,name):
         self.nodeName=name
 
-class Data:
-    def __init__(self):
-        self.data=[]
-        self.dataName=None
-        self.description=None
         
