@@ -34,7 +34,7 @@ int number(){
 
 
 void dataset(int symptons,int dieases){
-    ofstream myfile("test.csv");
+    ofstream myfile("test.csv",ios_base::app);
     
     string heading = "X1,X2,X3,X4,X5,Dieases";
     // heading of csv file
