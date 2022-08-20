@@ -69,7 +69,6 @@ class createData{
         
         // close file 
         myfile.close();
-        cout<<"fuck";
     }
 
 };
