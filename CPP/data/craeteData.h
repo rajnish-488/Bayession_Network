@@ -1,3 +1,8 @@
+#ifndef createData_H
+#define createData_H
+
+#include<bits/stdc++.h>
+using namespace std;
 class create_Data{
     public:
     char convert(int x){
@@ -31,7 +36,7 @@ class create_Data{
     }
 
 
-    void dataset(int symptons,int dieases){
+    void dataset(int symptons,int dieases,int row){
         ofstream myfile("test.csv");
         
         string heading = "X1,X2,X3,X4,X5,Dieases";
@@ -41,7 +46,7 @@ class create_Data{
 
     
         vector<vector<string>> test;
-        for(int i=0;i<100;i++){
+        for(int i=0;i<row;i++){
             str = "";
             for(int j=0;j<symptons-1;j++){
                 // generate random number 0 or 1
@@ -66,12 +71,7 @@ class create_Data{
         myfile.close();
     }
 
-}
+};
 
 
-
-
-
-int main(){
-    return 0;
-}
+#endif
