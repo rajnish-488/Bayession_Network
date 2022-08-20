@@ -6,7 +6,7 @@
 using namespace std;
 
 struct Node {
-	string nodeName;
+	string columnName;
 	vector<Node*> parent;
 	vector<Node*> next;
 	vector<string> values;
@@ -34,6 +34,30 @@ class Bayesian_Network{
 		data=inputdata;
 		relations=inputrealtion;
 	}
+
+	//check the null values is there oe not;// special
+
+
+	// create the seperate node and strore all of the in allNode
+	// put the name, values, type
+
+	
+
+
+	//based on given relation find the relation and put in each nodes parent and children
+
+
+	// check the relation
+
+
+
+	//filling the conidtion table based on the parent node;
+
+
+	// based on condition we havew to create the probabolity;
+
+	//got to all nodes and find the probability and multuiply it;
+
 }
 
 
