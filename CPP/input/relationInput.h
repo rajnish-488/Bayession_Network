@@ -1,3 +1,6 @@
+#ifndef relationInput_H
+#define relationInput_H
+
 #include<bits/stdc++.h>
 #include <string>
 #include <algorithm>
@@ -5,7 +8,7 @@ using namespace std;
 
 
 // this will give the take the input of the relation of the node;
-class realationInput{
+class relationInput{
 
     public:
     
@@ -71,13 +74,4 @@ class realationInput{
     }
 };
 
-int main(){
-
-    // INPUT it;
-    // vector<pair<string,string>> arr;
-    // arr=it.Reation_Input("../relation.csv");
-    // for(int i=0;i<arr.size();i++){
-    //     cout<<arr[i].first<<" "<<arr[i].second<<"\n";
-    // }
-    return 0;
-}
+#endif

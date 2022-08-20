@@ -3,7 +3,7 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-class create_Data{
+class createData{
     public:
     char convert(int x){
         if(x==0){
@@ -37,7 +37,7 @@ class create_Data{
 
 
     void dataset(int symptons,int dieases,int row){
-        ofstream myfile("test.csv");
+        ofstream myfile("./data/test.csv");
         
         string heading = "X1,X2,X3,X4,X5,Dieases";
         // heading of csv file
@@ -69,6 +69,7 @@ class create_Data{
         
         // close file 
         myfile.close();
+        cout<<"fuck";
     }
 
 };

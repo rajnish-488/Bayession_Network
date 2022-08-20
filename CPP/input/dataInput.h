@@ -1,3 +1,6 @@
+#ifndef dataInput_H
+#define dataInput_H
+
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -96,3 +99,5 @@ class dataInput{
         return ans;   
     }
 };
+
+#endif
