@@ -74,6 +74,29 @@ class Bayesian_Network{
 
 	//filling the conidtion table based on the parent node;
 
+	vector<pair<string,vector<string>>> solve(vector<Node*> parent,int i,vector<string> &v,int n,Node* A){
+		if(i==n){
+			for(int i=0;i<n;i++){
+				
+			}
+		}
+	}
+
+	void set_condition(){
+		int n=model->arr.size();
+		for(int i=0;i<n;i++){
+			vector<Node*> parent=model->arr[i]->parent;
+			int n=parent.size();
+			for(int i=0;i<n;i++){
+				vector<string> x;
+				model->arr[i].condition.push_back({parent[i]->columnName,x});
+			}
+			vector<string> v;
+			solve(parent,0,v,n);
+
+		}
+	}
+
 
 	// based on condition we havew to create the probabolity;
 
