@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 int main(){
 
     //creattion of the data set
