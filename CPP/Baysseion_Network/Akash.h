@@ -114,14 +114,50 @@ class Bayesian_Network{
 // 	}	
 // }
 
-    vector<pair<string, vector<string>>> solve(vector<Node*> parent, ){ 
+    /*vector<pair<string, vector<string>>> solve(vector<Node*> parent, ){ 
         string ancestor="";
         for(int i=0; i<parent.size(); i++){
             ancestor += parent[i]->parent;
+
+        }
+    }*/
+
+//recursively build the data members in the vector
+    vector<vector<int>> build(vector<vector<int>> & arr, int type){
+        vector<vector<int>> ar;
+        if(arr.size()==0){
+            for(int i=0; i<type; i++){
+                vector<int> a = {i};
+                ar.push_back(a);
+            }
+        }
+        else{
+            for(int j=0; j<type; j++){
+                for(int i=0; i<arr.size(); i++){
+                    vector<int> temp = arr[i];
+                    temp.push_back(j);
+                    ar[i].push_back(temp);
+                }
+            }
         }
 
-        
+        return ar;
     }
+
+    vector<pair<string, vector<string>>> solve(vector<Node*> parent, int i, vector<string> &v, int n, Node* A){
+		vector<vector<int>> table;
+        
+        for(int i=0; i<parent.size(); i++){
+            int val = parent->type.size();
+            v.push_back(parent->columnName);
+            build(table, val);
+        }
+        // if(i==n){
+		// 	for(int i=0;i<n;i++){
+                
+		// 	}
+		// }
+	}
 }
 
 
