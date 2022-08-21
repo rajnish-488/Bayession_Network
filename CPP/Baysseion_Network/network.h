@@ -38,16 +38,16 @@ class Bayesian_Network{
 	//check the null values is there oe not;// special
 
 
-	// create the seperate node and strore all of the in allNode
+	// create the seperate node and strore all of the in allNode (harshit)
 	// put the name, values, type
 
 	
 
 
-	//based on given relation find the relation and put in each nodes parent and children
+	//based on given relation find the relation and put in each nodes parent and children (Akash FuckBoy)
 
 
-	// check the relation
+	// check the relation { Rajnish }
 
 
 

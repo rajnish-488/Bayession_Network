@@ -57,7 +57,7 @@ class Bayesian_Network{
                 s.insert(x.second[i]);
             }
             p->type=s;
-            model.arr.push_back(p);
+            model->arr.push_back(p);
 
         }
     }
