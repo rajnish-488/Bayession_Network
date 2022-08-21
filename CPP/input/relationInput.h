@@ -52,7 +52,7 @@ class relationInput{
         return ans;
     }
 
-    vector<pair<string,string>> Reation_Input(string path){
+    vector<pair<string,string>> reation_Input(string path){
         vector<pair<string,string>> ans;
         fstream newfile;
         try{
