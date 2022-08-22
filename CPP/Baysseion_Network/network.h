@@ -29,10 +29,12 @@ class Bayesian_Network{
 
 	unordered_map<string,vector<string>> data;
 	vector<pair<string,string>> relations;
+    allNode model;
 
 	Bayesian_Network(unordered_map<string,vector<string>> inputdata,vector<pair<string,string>> inputrelation){
 		data=inputdata;
 		relations=inputrealtion;
+        model->arr={};
 	}
 
 	//check the null values is there oe not;// special
@@ -153,7 +155,7 @@ class Bayesian_Network{
         return ar;
     }
 
-    vector<pair<string, vector<string>>> solve(vector<Node*> parent, int i, vector<string> &v, int n, Node* A){
+    vector<pair<string, vector<string>>> create_condition_table(vector<Node*> parent, int i, vector<string> &v, int n, Node* A){
 		vector<vector<int>> table;
         
         for(int i=0; i<parent.size(); i++){
@@ -169,6 +171,71 @@ class Bayesian_Network{
 	}
 
 	// based on condition we havew to create the probabolity;
+	void setProbability(Node * root){
+		//initiate the probability datatype;
+		for(string x: root->type){
+			vector<double> vv;
+			root->probability.push_back({x,vv});
+		}
+		
+		int m=root->condition.size();
+
+		if(m!=0){
+			int n=root->condition[0].second.size();
+			vector<pair<string,string>> pp; // to store all the values of the in each row
+			for(int i=0;i<m;i++){// to store the column name in pair;
+				pp.push_back({root->condition[i].first,""});
+			}
+			for(int i=0;i<n;i++){// travesed to get the values of each row;
+				for(int j=0;j<m;j++){
+					// setting all the values of each pair in the condition row;
+					pp[j].second=root->condition[j].second[i];
+				}
+				vector<int> arr;//vector<to store all the values;
+				int nn=data[root->columnName].size();
+				bool check;
+				for(int j=0;j<nn;j++){
+					// travese therought all the values of data;
+					check=true;
+					for(int k=0;k<m;k++){
+						//traverse frrom all the values in column of pp vector<pair>
+						if(data[pp[k].first][j]!=pp[k].second){
+							check=false;// checking if the pp data is same for that row in data
+							break
+						}
+					}
+
+					if(check){// it the condition that the column is the one which is the  solution
+						arr.push_back(data[root->columnName][j]);
+					}
+					int ppp=root->probability.size();
+					int arr_n=arr.size()
+
+					for(int k=0;k<ppp;k++){//pass through all the values of the probability
+						int data=count(arr,arr + arr_n,root->probability[k].first);
+						double xx=data/arr_n;
+						if(xx==0) x=1e-6;
+						root->probability[k].second.push_back(xx);
+					}
+
+
+				}
+
+			}
+
+
+		}
+	}
+
+	void findProbanbility(){
+		int n=mode->arr.size();
+		for(int i=0;i<n;i++){
+			setProbability(model->arr[i]);
+		}
+
+	}
+
+
 
 	//got to all nodes and find the probability and multuiply it;
 
