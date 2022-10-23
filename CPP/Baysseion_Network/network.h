@@ -5,7 +5,7 @@
 
 using namespace std;
 
-struct Node {
+class Node {
 	string columnName;
 	vector<Node*> parent;
 	vector<Node*> next;
@@ -15,7 +15,7 @@ struct Node {
 	vector<pair<string,vector<double>>> probability;
 };
 
-struct allNode
+class allNode
 {
 	vector<Node *> arr;
 };
@@ -33,7 +33,7 @@ class Bayesian_Network{
 
 	Bayesian_Network(unordered_map<string,vector<string>> inputdata,vector<pair<string,string>> inputrelation){
 		data=inputdata;
-		relations=inputrealtion;
+		relations=inputrelation;
         model->arr={};
 	}
 
