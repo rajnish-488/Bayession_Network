@@ -23,14 +23,18 @@ int main(){
     relationInput relationtake;
     vector<pair<string,string>> relation= relationtake.reation_Input("./data/relation.csv");//getting the correct values
 
-    // int n=relation.size();
-    // cout<<"\n";
-    // for(int i=0;i<n;i++){
-    //     cout<<relation[i].first<<" "<<relation[i].second<<"\n";
-    // }
+    int n=relation.size();
+    cout<<"\n";
+    for(int i=0;i<n;i++){
+        cout<<relation[i].first<<" "<<relation[i].second<<"\n";
+    }
 
-    Bayesian_Network model=new Bayesian_Network(datatake,relationtake);
-    model.Add_data();
+    cout<<"*********************************************\n";
+
+    Bayesian_Network *model=new Bayesian_Network(data,relation);
+    model->Add_data();
+    // model->check1();
+    model->add_relation();
 
 
     
