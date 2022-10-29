@@ -12,7 +12,7 @@ class Node {
 		vector<Node*> parent;
 		vector<Node*> next;
 		vector<string> values;
-		unordered_set<string> type;
+		set<string> type;
 		vector<pair<string,vector<string>>> condition ;
 		vector<pair<string,vector<double>>> probability;
 
@@ -53,7 +53,7 @@ class Bayesian_Network{
         for(auto x : data){
             Node *p= new Node(x.first);
             p->values=x.second;
-            unordered_set<string> s;
+            set<string> s;
             int n=x.second.size();
             for(int i=0;i<n;i++){
                 s.insert(x.second[i]);
@@ -64,17 +64,17 @@ class Bayesian_Network{
         }
     }
 	
-	// void check1(){
-	// 	cout<<"print: ";
-	// 	for(auto x : model.arr){
-	// 		cout<<x->columnName<<" :";
-	// 		for(auto xx: x->values)cout<<xx<<" ";
-	// 		cout<<endl;
-	// 		cout<<"type: ";
-	// 		for(auto xxx: x->type)cout<<xxx<<" ";
-	// 		cout<<endl;
-	// 	}
-	// }
+	void check1(){
+		cout<<"print: ";
+		for(auto x : model.arr){
+			cout<<x->columnName<<" :";
+			for(auto xx: x->values)cout<<xx<<" ";
+			cout<<endl;
+			cout<<"type: ";
+			for(auto xxx: x->type)cout<<xxx<<" ";
+			cout<<endl;
+		}
+	}
 
 	//based on given relation find the relation and put in each nodes parent and children (Akash FuckBoy)
 	void add_relation(){
@@ -98,6 +98,19 @@ class Bayesian_Network{
         }
     }
 
+	void check_relation(){
+		int n=model.arr.size();
+		for(int i=0;i<n;i++){
+			
+			Node* x=model.arr[i];
+			cout<<"Parent "<<x->columnName<<" :";
+			for(auto xx: x->parent){
+				cout<<xx->columnName<<" ";
+			}
+			cout<<endl;
+		}
+	}
+
 	// // check the relation { Rajnish }
 	// bool checkCycle(int node, unordered_map<string, list<string> > &adj, unordered_map<string , bool >& visited , unordered_map<string , bool > & dfsvisited) {
 	// 	visited[node] = true;
@@ -119,18 +132,18 @@ class Bayesian_Network{
 
 
 	// // taking no of nodes or vertices 
-	// bool isDAG(int vertices, vector<pair<string,string>> relation)
+	// bool isDAG()
 	// {
 	// 	// No. of nodes or vertices
-	// 	int vertices;
+	// 	int vertices=data.size();
 
 	// 	// create a adjacency list for all nodes
 	// 	unordered_map<string, list<string> > adj;
 
 
-	// 	for(int i=0;i<relation.size();i++){
-	// 		int u = relation[i].first;
-	// 		int v = relation[i].second;
+	// 	for(int i=0;i<relations.size();i++){
+	// 		int u = relations[i].first;
+	// 		int v = relations[i].second;
 
 	// 		adj[u].push_back(v);
 	// 	}
@@ -182,11 +195,7 @@ class Bayesian_Network{
     //         v.push_back(parent->columnName);
     //         build(table, val);
     //     }
-    //     // if(i==n){
-	// 	// 	for(int i=0;i<n;i++){
-                
-	// 	// 	}
-	// 	// }
+        
 	// }
 
 	// // based on condition we havew to create the probabolity;

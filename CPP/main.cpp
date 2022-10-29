@@ -35,6 +35,12 @@ int main(){
     model->Add_data();
     // model->check1();
     model->add_relation();
+    // model->check_relation();
+    // if(model->isDAG()){
+    //     cout<<"The relation is not cyclic\n";
+    // }else{
+    //     cout<<"The relation is Acyclic";
+    // }
 
 
     
