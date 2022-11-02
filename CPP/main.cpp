@@ -36,11 +36,16 @@ int main(){
     // model->check1();
     model->add_relation();
     // model->check_relation();
+    model->create_condition();
+    model->check_condition();
     // if(model->isDAG()){
     //     cout<<"The relation is not cyclic\n";
     // }else{
     //     cout<<"The relation is Acyclic";
     // }
+
+    model->create_Probability();
+    model->check_probability();
 
 
     
