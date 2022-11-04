@@ -261,7 +261,7 @@ class Bayesian_Network{
 						if(ut)cnt++;
 					}
 					double out=(double(cnt))/val_n;
-					arr[i][j]=max(1e-9,out);
+					arr[i][j]=max(1e-4,out);
 					it++;
 				}
 			}
@@ -275,7 +275,7 @@ class Bayesian_Network{
 		int n=model.arr.size();
 		for(int i=0;i<n;i++){
 			Node *root=model.arr[i];
-			cout<<"NOde : "<<root->columnName<<endl;
+			cout<<"Node : "<<root->columnName<<endl;
 			for(auto x: root->probability){
 				for(auto y : x){
 					cout<<y<<" ";
@@ -285,8 +285,99 @@ class Bayesian_Network{
 		}
 	}
 
+	vector<string> predict_probability_off_all(map<string,string> &mp,Node *root_node){
+		vector<string> ans;
+		int type_n=root_node->type.size();
+		int n=model.arr.size();
+		vector<double> arr(type_n,1);
+		set<string>::iterator it =root_node->type.begin();
+		double mx=1e-18;
+		for(int xx=0;xx<type_n;xx++){
+			mp[root_node->columnName]=*it;
+			for(int ii=0;ii<n;ii++){
+				Node *root=model.arr[ii];
+				string out="@";
+				int parent_n=root->parent.size();
+				int condition_n=root->condition.size();
+				for(int i=0;i<parent_n;i++){
+					out+=mp[root->parent[i]->columnName];
+					out+="@";
+				}
+				int index_j=-1,index_i=-1;
+				for(int i=0;i<condition_n;i++){
+					if(root->condition[i]==out)index_j=i;
+				}
+				int cnt=0;
+				for(auto x: root->type){
+					if(x==mp[root->columnName]){index_i=cnt;break;}
+					else cnt++;
+				}
+				if(index_j==-1 or index_i==-1)arr[xx]*=1;
+				else{
+					arr[xx]*=root->probability[index_i][index_j];
+				}
+			}
+			cout<<arr[xx]<<"\n";
+			if(arr[xx]>mx){
+				ans.clear();
+				mx=arr[xx];
+			}
+			if(arr[xx]==mx)ans.push_back(*it);
+			it++;
+		}
+		
+		return ans;
+	}
 
-	vector<string> predict(map<string,string> mp){
+
+	void predict(){
+
+		cout<<"\n*********************************************\n";
+		int count=1;
+		vector<string> arr;
+		for(auto x: data){
+			cout<<count<<" :"<<x.first<<"\n";
+			arr.push_back(x.first);
+			count++;
+		}
+		int input1;
+		cout<<"\nEnter the number what you wnated to predict: ";
+		cin>>input1;
+		if(input1<0 || input1>=count){cout<<"Enter the Correct Number";return;}
+		map<string,string> mp;
+
+		int n=model.arr.size();
+
+		cout<<"\n Enter the data of the Nodes: \n";
+		int input2;
+		Node* input3;
+		for(int ii=0;ii<n;ii++){
+			Node *root= model.arr[ii];
+			if(root->columnName==arr[input1-1]){input3=root;continue;}//some changes here
+			cout<<"Node: "<<root->columnName<<"\n";
+			
+			int cnt=1;
+			for(auto x: root->type){
+				cout<<cnt<<" :"<<x<<"\n";
+				cnt++;
+			}
+			cout<<"Select the value: ";
+			cin>>input2;
+			if(input2<=0 || input2>=cnt){ii--;continue;}
+			set<string>::iterator it =root->type.begin();
+			for(int i=1;i<input2;i++)it++;
+			mp[root->columnName]=*it;
+		}
+
+		cout<<"/nThe output is : \n";
+		for(auto x: mp){
+			cout<<x.first<<" "<<x.second<<"\n";
+		}
+
+		vector<string> ans=predict_probability_off_all(mp,input3);
+
+		cout<<"The predicted values of "<<input3->columnName<<" is/are: ";
+		for(auto x: ans)cout<< x<< " ";
 
 	}
 

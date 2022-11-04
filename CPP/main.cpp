@@ -11,14 +11,13 @@ int main(){
     //creattion of the data set
 
     createData create;
-    create.dataset(6,5,10);
+    create.dataset(6,5,100);
 
     // taking the input data and storing it in the structure;
 
     dataInput datatake;
     unordered_map<string,vector<string>> data = datatake.get_data("./data/test.csv");// getting the correct values;
     datatake.print();
-
     // taking the realtion as input;
     relationInput relationtake;
     vector<pair<string,string>> relation= relationtake.reation_Input("./data/relation.csv");//getting the correct values
@@ -41,5 +40,7 @@ int main(){
     model->check_condition();
     model->create_Probability();
     model->check_probability();
+
+    model->predict();
     return 0;
 }
