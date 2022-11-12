@@ -65,13 +65,12 @@ class Bayesian_Network{
     }
 	
 	void check1(){
-		cout<<"print: ";
 		for(auto x : model.arr){
 			cout<<x->columnName<<" :";
-			for(auto xx: x->values)cout<<xx<<" ";
+			for(auto xx: x->values)cout<<xx<<", ";
 			cout<<endl;
-			cout<<"type: ";
-			for(auto xxx: x->type)cout<<xxx<<" ";
+			cout<<"\ntype: ";
+			for(auto xxx: x->type)cout<<xxx<<", ";
 			cout<<endl;
 		}
 	}
@@ -103,9 +102,9 @@ class Bayesian_Network{
 		for(int i=0;i<n;i++){
 			
 			Node* x=model.arr[i];
-			cout<<"Parent "<<x->columnName<<" :";
+			cout<<"Parent   "<<x->columnName<<"  Child:        ";
 			for(auto xx: x->parent){
-				cout<<xx->columnName<<" ";
+				cout<<xx->columnName<<", ";
 			}
 			cout<<endl;
 		}
@@ -160,7 +159,7 @@ class Bayesian_Network{
 			if(mp.find(x.first)!=mp.end() and mp.find(x.second)!=mp.end())
 				addEdge(adj, mp[x.first], mp[x.second]);
 			else
-				return "The entered Relations can't form a garph.";
+				return x.first+" "+x.second+" " "The entered Relations can't form a garph.";
 		}
 		if (isCyclic(V, adj))
 			return "Cycle Detected";
@@ -209,7 +208,7 @@ class Bayesian_Network{
 		for(int i=0;i<n;i++){
 			Node *root=model.arr[i];
 			cout<<"Node :"<<root->columnName<<"\n";
-			for(auto x: root->condition)cout<<x<<" ";
+			for(auto x: root->condition)cout<<x<<",";
 			cout<<"\n";
 		}
 	}
@@ -233,22 +232,36 @@ class Bayesian_Network{
 
 	void create_Probability(){
 		int n=model.arr.size();
+		bool tip=false;
+
+		// first loop (all nodes);
+
 		for(int ii=0;ii<n;ii++){
+			tip=false;
 			Node *root=model.arr[ii];
+			if(root->columnName=="Disease") tip=true;
 			int nn=root->type.size();
 			int mm=root->condition.size();
 			int val_n=root->values.size();
 			int parent_n=root->parent.size();
 			vector<vector<double>> arr(nn, vector<double>( mm,0));
+
+
+			// second loop (column)
+
 			for(int j=0; j<mm; j++){
 				vector<string> v=convert_to_vector(root->condition[j]);
+				//if(tip){for(auto x: v)cout<<x<<" ";cout<<endl;} //getting all the values in V
+
+				// third loop (row)
+				set<string>::iterator it =root->type.begin();
 				for(int i=0;i<nn;i++){
 					// create the iterator of set
 					int cnt=0;
-					set<string>::iterator it =root->type.begin();
 					for(int k=0;k<val_n;k++){
 						bool ut=false;
-						if(root->values[i]==*it and v.size()==parent_n){
+						// if(tip)cout<<root->values[k]<<" "<<*it<<" \n";
+						if(root->values[k]==*it and v.size()==parent_n){
 							ut=true;
 							for(int l=0;l<parent_n;l++){
 								if(root->parent[l]->values[k]!=v[l]){
@@ -258,10 +271,12 @@ class Bayesian_Network{
 
 							}
 						}
-						if(ut)cnt++;
+						if(ut==true)cnt++;
 					}
+					// if(tip)cout<<"count: "<<cnt<<"\n";
 					double out=(double(cnt))/val_n;
-					arr[i][j]=max(1e-4,out);
+					arr[i][j]=max(1e-100,out);
+
 					it++;
 				}
 			}
@@ -291,7 +306,7 @@ class Bayesian_Network{
 		int n=model.arr.size();
 		vector<double> arr(type_n,1);
 		set<string>::iterator it =root_node->type.begin();
-		double mx=1e-18;
+		double mx=1e-100;
 		for(int xx=0;xx<type_n;xx++){
 			mp[root_node->columnName]=*it;
 			for(int ii=0;ii<n;ii++){
