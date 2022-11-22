@@ -332,7 +332,7 @@ class Bayesian_Network{
 					arr[xx]*=root->probability[index_i][index_j];
 				}
 			}
-			cout<<arr[xx]<<"\n";
+			// cout<<arr[xx]<<"\n";
 			if(arr[xx]>mx){
 				ans.clear();
 				mx=arr[xx];
@@ -395,6 +395,51 @@ class Bayesian_Network{
 		for(auto x: ans)cout<< x<< " ";
 
 	}
+
+
+	string check_accuracy(unordered_map<string,vector<string>> arr,int n_arr,string to_check){
+		int count=0;
+		map<string,string> mp;
+		// creating the map;
+		for(auto x: arr){
+			if(x.first!=to_check)
+				mp[x.first]="";
+		}
+		Node* input3=NULL;
+		//assining value to map
+		int m=model.arr.size();
+		for(int i=0;i<m;i++){
+			Node *root= model.arr[i];
+			if(root->columnName==to_check){input3=root;break;}
+		}
+		if(input3==NULL) return "The paramenter inputed to find dont match the Model feilds";
+		for(int i=0;i<n_arr;i++){
+			for(auto x: arr){
+				if(x.first!=to_check)
+					mp[x.first]=x.second[i];
+			}
+			vector<string> ans=predict_probability_off_all(mp,input3);
+
+			int ans_n=ans.size();
+			cout<<arr[to_check][i]<<": ";
+			for(int j=0;j<ans_n;j++){
+				cout<<ans[j]<<" ";
+			}
+			cout<<endl;
+			for(int j=0;j<ans_n;j++){
+				if(ans[j]==arr[to_check][i]){
+					count++;
+					break;
+				}
+			}
+		}
+
+		double out= (double)count/n_arr;
+		out*=100;
+		string out_ans=to_string(out);
+		return out_ans;  
+
+	} 
 
 };
 

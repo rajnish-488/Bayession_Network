@@ -45,6 +45,8 @@ int main(){
     model->create_Probability();
     model->check_probability();
 
-    model->predict();
+    // model->predict();
+    int n=relation.size();
+    cout<<model->check_accuracy(data,n,"Disease");
     return 0;
 }
