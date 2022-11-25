@@ -98,6 +98,7 @@ class Bayesian_Network{
     }
 
 	void check_relation(){
+		cout<<"Check relation: ";
 		int n=model.arr.size();
 		for(int i=0;i<n;i++){
 			

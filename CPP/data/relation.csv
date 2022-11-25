@@ -1,12 +1,34 @@
 skin_rash,Disease
+skin_rash,dischromic _patches
 stomach_pain,Disease
 abdominal_pain,Disease
+Disease,obesity
+fatigue,weight_loss
+Disease,weight_loss
+irregular_sugar_level,Disease
+irregular_sugar_level,blurred_and_distorted_vision
 vomiting,Disease
 continuous_sneezing,Disease
 skin_rash,stomach_pain
 skin_rash,nodal_skin_eruptions
+Disease,nodal_skin_eruptions
+fatigue,increased_appetite
+extra_marital_contacts,high_fever
+Disease,extra_marital_contacts
+fatigue,polyuria
+excessive_hunger,Disease
+excessive_hunger,restlessness
+restlessness,increased_appetite
+Disease,chest_pain
+yellowish_skin,vomiting
+weight_loss,increased_appetite
+weight_loss,polyuria
+Disease,yellowish_skin
+stomach_pain,spotting_ urination
+continuous_sneezing,watering_from_eyes
+Disease,spotting_ urination
 stomach_pain,burning_micturition
-burning_micturition,spotting_urination
+burning_micturition,spotting_ urination
 stomach_pain,acidity
 acidity,ulcers_on_tongue
 ulcers_on_tongue,cough
@@ -20,9 +42,19 @@ nausea,yellowing_of_eyes
 abdominal_pain,passage_of_gases
 passage_of_gases,internal_itching
 internal_itching,indigestion
-nodal_skin_eruptions,dischromic_patches
+nodal_skin_eruptions,dischromic _patches
 continuous_sneezing,shivering
 shivering,chills
 chills,watering_from_eyes
 skin_rash,nodal_skin_eruptions
-nodal_skin_eruptions,dischromic_patches
+nodal_skin_eruptions,dischromic _patches
+polyuria,Disease
+Disease,indigestion
+indigestion,abdominal_pain
+loss_of_appetite,indigestion
+muscle_wasting,extra_marital_contacts
+blurred_and_distorted_vision,polyuria
+muscle_wasting,patches_in_throat
+extra_marital_contacts,Disease
+abdominal_pain,internal_itching
+lethargy,excessive_hunger

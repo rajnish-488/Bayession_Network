@@ -16,7 +16,7 @@ int main(){
     // taking the input data and storing it in the structure;
 
     dataInput datatake;
-    unordered_map<string,vector<string>> data = datatake.get_data("./data/test2.csv");// getting the correct values;
+    unordered_map<string,vector<string>> data = datatake.get_data("./input/Symptoms.csv");// getting the correct values;
     // datatake.print();
     // taking the realtion as input;
     relationInput relationtake;
@@ -39,14 +39,14 @@ int main(){
     cout<<"\n\n\n***********************************************************\n\n\n";
     cout<<"The Cycle is: "<<model->isDAG()<<"\n\n";
     cout<<"\n\n\n***********************************************************\n\n\n";
-    model->create_condition();
-    model->check_condition();
-    cout<<"\n\n\n***********************************************************\n\n\n";
-    model->create_Probability();
-    model->check_probability();
+    // model->create_condition();
+    // model->check_condition();
+    // cout<<"\n\n\n***********************************************************\n\n\n";
+    // model->create_Probability();
+    // model->check_probability();
 
-    // model->predict();
-    int n=relation.size();
-    cout<<model->check_accuracy(data,n,"Disease");
+    // // model->predict();
+    // int n=relation.size();
+    // cout<<model->check_accuracy(data,n,"Disease");
     return 0;
 }
